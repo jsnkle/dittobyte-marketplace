@@ -1,0 +1,8 @@
+{
+  "name": "monorepo-architecture",
+  "version": "1.0.0",
+  "description": "Enforces clean architecture boundaries in TypeScript monorepos using vertical-slice feature structure. Provides scaffolding, placement guidance, auditing, and real-time write validation.",
+  "author": {
+    "name": "DittoByte"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "dittobyte-marketplace",
+  "owner": {
+    "name": "DittoByte"
+  },
+  "metadata": {
+    "description": "Curated Claude Code plugins for TypeScript development",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "monorepo-architecture",
+      "source": "./plugins/monorepo-architecture",
+      "description": "Enforces clean architecture boundaries in TypeScript monorepos with vertical-slice feature structure. Includes scaffolding, placement guidance, auditing, and real-time write validation.",
+      "version": "1.0.0",
+      "author": {
+        "name": "DittoByte"
+      },
+      "license": "MIT",
+      "keywords": ["architecture", "monorepo", "typescript", "clean-architecture", "vertical-slice"],
+      "category": "architecture"
+    }
+  ]
+}
