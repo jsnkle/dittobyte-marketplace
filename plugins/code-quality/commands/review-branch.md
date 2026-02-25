@@ -18,6 +18,6 @@ The optional argument is the base branch to diff against. Use the optional `--ag
 - `/review-branch --agents security` — run only the security agent
 - `/review-branch develop --agents security,types` — run security and types agents
 
-Dispatch specialized agents (general, types, simplify, security, async-perf) in parallel to analyze the aggregate diff, then print findings to the terminal grouped by severity.
+Dispatch specialized agents in parallel to analyze the aggregate diff, then print findings to the terminal grouped by severity. Built-in agents: `general`, `types`, `simplify`, `security`, `async-perf`. Custom agents use the `custom:<name>` prefix (e.g., `--agents security,custom:no-console-log`).
 
 Follow the orchestration steps in `${CLAUDE_PLUGIN_ROOT}/skills/branch-review/SKILL.md`.

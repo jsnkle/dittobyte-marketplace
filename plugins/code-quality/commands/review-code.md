@@ -18,6 +18,6 @@ The optional argument is a git ref to diff against. Use the optional `--agents` 
 - `/review-code --agents security` — run only the security agent on uncommitted changes
 - `/review-code main --agents security,types` — run security and types agents against `main`
 
-Dispatch specialized agents (general, types, simplify, security, async-perf) in parallel to analyze the diff, then print findings to the terminal grouped by severity.
+Dispatch specialized agents in parallel to analyze the diff, then print findings to the terminal grouped by severity. Built-in agents: `general`, `types`, `simplify`, `security`, `async-perf`. Custom agents use the `custom:<name>` prefix (e.g., `--agents security,custom:no-console-log`).
 
 Follow the orchestration steps in `${CLAUDE_PLUGIN_ROOT}/skills/code-review/SKILL.md`.

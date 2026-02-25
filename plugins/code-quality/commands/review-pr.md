@@ -17,6 +17,6 @@ The argument is a PR number. Use the optional `--agents` flag to run only specif
 - `/review-pr 42 --agents security` — run only the security agent
 - `/review-pr 42 --agents security,types` — run security and types agents
 
-Dispatch specialized agents (general, types, simplify, security, async-perf) in parallel to analyze the PR diff, then post findings as a GitHub review with inline comments and a summary.
+Dispatch specialized agents in parallel to analyze the PR diff, then post findings as a GitHub review with inline comments and a summary. Built-in agents: `general`, `types`, `simplify`, `security`, `async-perf`. Custom agents use the `custom:<name>` prefix (e.g., `--agents security,custom:no-console-log`).
 
 Follow the orchestration steps in `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/SKILL.md`.
