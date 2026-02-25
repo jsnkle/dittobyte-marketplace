@@ -68,6 +68,16 @@ Reviews all changes on the current branch since it diverged from a base.
 - No arguments: diffs against `main`
 - With a base branch: `/review-branch develop`
 
+### Fix review findings
+
+```
+/fix-findings
+```
+
+Reads findings from the most recent review command in the conversation, enters plan mode so you can approve the proposed fixes, then applies them. Findings that require design decisions or broad refactoring are skipped with an explanation.
+
+- Run any review command first, then `/fix-findings` to act on the results
+
 ## Flags
 
 ### `--agents`
