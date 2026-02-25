@@ -19,6 +19,18 @@
       "license": "MIT",
       "keywords": ["architecture", "monorepo", "typescript", "clean-architecture", "vertical-slice"],
       "category": "architecture"
+    },
+    {
+      "name": "code-quality",
+      "source": "./plugins/code-quality",
+      "description": "Automated PR code review via five specialized agents. Posts inline GitHub review comments with an overall summary. Framework-agnostic — works with any TypeScript project.",
+      "version": "1.0.0",
+      "author": {
+        "name": "DittoByte"
+      },
+      "license": "MIT",
+      "keywords": ["code-review", "pull-request", "typescript", "quality", "security"],
+      "category": "code-quality"
     }
   ]
 }
