@@ -24,7 +24,7 @@ Read configuration from `.claude/code-quality.local.md` if it exists. Parse YAML
 | `agents` | all five | Subset of agents to run: `general`, `types`, `simplify`, `security`, `async-perf` |
 | `exclude_patterns` | `[]` | Glob patterns to exclude from review (e.g., `**/*.test.ts`, `**/generated/**`) |
 
-If the user passed `--agents <list>` in the command arguments, use that comma-separated list instead of the config file's `agents` setting. Valid values: `general`, `types`, `simplify`, `security`, `async-perf`. If an unrecognized agent name is provided, print an error listing valid options and stop.
+If the user passed `--agents <list>` in the command arguments, use that comma-separated list instead of the config file's `agents` setting. Valid built-in values: `general`, `types`, `simplify`, `security`, `async-perf`. Custom agents use the `custom:<name>` prefix (e.g., `custom:no-console-log`). See `${CLAUDE_PLUGIN_ROOT}/references/agent-dispatch.md` for resolution rules and validation.
 
 ## Orchestration Steps
 
@@ -46,23 +46,15 @@ If `exclude_patterns` is configured, filter the diff to remove matching files be
 
 ### Step 3 — Dispatch agents in parallel
 
-Launch all configured agents concurrently using the Task tool. Each agent receives:
+Resolve each configured agent to its file using `${CLAUDE_PLUGIN_ROOT}/references/agent-dispatch.md`.
+
+Launch all resolved agents concurrently using the Task tool. Each agent receives:
 
 - The commit diff (filtered)
 - The list of changed files
 - The commit message as additional context
 - Instructions to follow `${CLAUDE_PLUGIN_ROOT}/references/review-guidelines.md`
 - Output format from `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`
-
-Agent mapping:
-
-| Config key | Agent file |
-|------------|-----------|
-| `general` | `${CLAUDE_PLUGIN_ROOT}/agents/general-reviewer.md` |
-| `types` | `${CLAUDE_PLUGIN_ROOT}/agents/type-design-analyzer.md` |
-| `simplify` | `${CLAUDE_PLUGIN_ROOT}/agents/code-simplifier.md` |
-| `security` | `${CLAUDE_PLUGIN_ROOT}/agents/security-analyzer.md` |
-| `async-perf` | `${CLAUDE_PLUGIN_ROOT}/agents/async-perf-analyzer.md` |
 
 ### Step 4 — Collect and deduplicate
 
