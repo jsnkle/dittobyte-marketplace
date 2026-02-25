@@ -43,6 +43,8 @@ If it does, ask the user whether to overwrite it using AskUserQuestion. If they 
 
 ### Step 3 — Create the agent file
 
+First, ask the user what the agent should review (its domain/focus area) using AskUserQuestion. Use their answer to fill in the `description`, `Your Domain` heading, and bullet points in the template below.
+
 Ensure the `.claude/code-quality-agents/` directory exists.
 
 Write `.claude/code-quality-agents/<name>.md` with this template:
@@ -50,7 +52,7 @@ Write `.claude/code-quality-agents/<name>.md` with this template:
 ```markdown
 ---
 name: <name>
-description: <ask the user what this agent should review>
+description: <from user's answer above>
 color: yellow
 ---
 
@@ -92,8 +94,6 @@ Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/r
 
 Return `[]` if no findings.
 ```
-
-Before writing, ask the user what the agent should review (its domain/focus area) using AskUserQuestion, then fill in the `description`, `Your Domain` heading, and bullet points accordingly.
 
 ### Step 4 — Print next-steps
 
