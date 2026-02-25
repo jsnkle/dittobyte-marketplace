@@ -42,6 +42,8 @@ Each agent uses its own category tag:
 | `security-analyzer` | `security` |
 | `async-perf-analyzer` | `async-perf` |
 
+Custom agents use their `<name>` (the filename without `.md`) as the category tag. For example, an agent at `.claude/code-quality-agents/no-console-log.md` uses category `no-console-log`.
+
 ## Agent Return Contract
 
 - Return valid JSON only — no markdown wrapping, no explanation text
