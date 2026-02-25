@@ -50,6 +50,9 @@ When posted to GitHub, each inline comment is rendered as:
 **[severity | category]** Brief actionable statement.
 
 Why: One sentence justification.
+
+---
+*Reviewed by Claude Code*
 ```
 
 Examples:
@@ -86,7 +89,7 @@ The overall review summary posted as the review body:
 - **<file>:<line>** — <message> (<category>)
 
 ---
-*Reviewed by code-quality plugin*
+*Reviewed by jsnkle code-quality plugin*
 ```
 
 If a severity section has no findings, omit it entirely.
@@ -104,7 +107,7 @@ If all agents return zero findings:
 No issues found. Looks good!
 
 ---
-*Reviewed by code-quality plugin*
+*Reviewed by jsnkle code-quality plugin*
 ```
 
 ## Agent Return Contract
