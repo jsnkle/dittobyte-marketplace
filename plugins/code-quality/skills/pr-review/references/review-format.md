@@ -1,58 +1,18 @@
-# Review Output Format
+# GitHub Review Format
 
-Structured output format that all code-quality agents must follow. The orchestrator parses this format to deduplicate, categorize, and post findings.
-
-## Finding Format
-
-Each agent returns a JSON array of findings. Every finding must include all fields:
-
-```json
-[
-  {
-    "file": "src/auth/service.ts",
-    "line": 42,
-    "severity": "critical",
-    "category": "security",
-    "message": "User input interpolated into SQL query.",
-    "why": "Allows SQL injection — use parameterized queries instead."
-  }
-]
-```
-
-### Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `file` | string | Relative file path as it appears in the diff |
-| `line` | number | Line number in the new version of the file (right side of the diff) |
-| `severity` | string | One of: `critical`, `suggestion`, `nit` |
-| `category` | string | Agent's domain tag (see below) |
-| `message` | string | Brief actionable statement — what to change |
-| `why` | string | One sentence justification — why it matters |
-
-### Category Tags
-
-Each agent uses its own category tag:
-
-| Agent | Category tag |
-|-------|-------------|
-| `general-reviewer` | `general` |
-| `type-design-analyzer` | `types` |
-| `code-simplifier` | `simplify` |
-| `security-analyzer` | `security` |
-| `async-perf-analyzer` | `async-perf` |
+Rendering rules for posting code-quality findings to GitHub as a pull request review. For the agent JSON output schema and return contract, see `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`.
 
 ## Inline Comment Format
 
-When posted to GitHub, each inline comment is rendered as:
+Each inline comment is rendered as:
 
-```
+```markdown
 **[severity | category]** Brief actionable statement.
 
 Why: One sentence justification.
 
 ---
-*Reviewed by Claude Code*
+*Reviewed by jsnkle code-quality plugin*
 ```
 
 Examples:
@@ -109,11 +69,3 @@ No issues found. Looks good!
 ---
 *Reviewed by jsnkle code-quality plugin*
 ```
-
-## Agent Return Contract
-
-- Return valid JSON only — no markdown wrapping, no explanation text
-- Return an empty array `[]` if no findings
-- Never return findings outside your domain (see review-guidelines.md)
-- Never return findings for lines not in the PR diff
-- Use the line number from the **new** version of the file (right side)
