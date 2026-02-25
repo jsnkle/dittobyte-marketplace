@@ -1,0 +1,8 @@
+{
+  "name": "code-quality",
+  "version": "1.0.0",
+  "description": "Automated PR code review via five specialized agents. Posts inline GitHub review comments with an overall summary. Framework-agnostic — works with any TypeScript project.",
+  "author": {
+    "name": "DittoByte"
+  }
+}
