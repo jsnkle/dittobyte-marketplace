@@ -92,7 +92,11 @@ Run only specific agents instead of all five. Pass a comma-separated list of age
 /review-branch --agents security,async-perf
 ```
 
-Valid agent names: `general`, `types`, `simplify`, `security`, `async-perf`.
+Valid built-in agent names: `general`, `types`, `simplify`, `security`, `async-perf`. Custom agents use the `custom:<name>` prefix:
+
+```
+/review-code --agents security,custom:no-console-log
+```
 
 The `--agents` flag overrides the `agents` setting in `.claude/code-quality.local.md` for that invocation. This replaces the need for standalone `/security-audit` or `/type-check` commands.
 
@@ -114,6 +118,7 @@ agents:
   - simplify
   - security
   - async-perf
+  - custom:no-console-log
 exclude_patterns:
   - "**/*.test.ts"
   - "**/*.spec.ts"
@@ -123,6 +128,45 @@ review_event: COMMENT
 ```
 
 All settings are optional. Defaults are used when the file doesn't exist or a setting is missing.
+
+## Custom Agents
+
+Create project-specific review agents that run alongside the built-in five.
+
+### Setup
+
+1. Create an agent file in `.claude/code-quality-agents/`:
+
+```
+/create-agent no-console-log
+```
+
+This scaffolds `.claude/code-quality-agents/no-console-log.md` with the correct structure and frontmatter.
+
+2. Register it in `.claude/code-quality.local.md` using the `custom:` prefix:
+
+```yaml
+---
+agents:
+  - general
+  - security
+  - custom:no-console-log
+---
+```
+
+Or pass it via the `--agents` flag for a one-off run:
+
+```
+/review-code --agents security,custom:no-console-log
+```
+
+### How it works
+
+- Custom agent files live in `.claude/code-quality-agents/` (project-local, outside the plugin)
+- Referenced with the `custom:<name>` prefix to distinguish from built-in agents
+- Receive the same inputs as built-in agents (diff, file list, review guidelines, output format)
+- Must follow the same finding format so results integrate into the standard output
+- Use their `<name>` (filename without `.md`) as the category tag in findings
 
 ## Philosophy
 
