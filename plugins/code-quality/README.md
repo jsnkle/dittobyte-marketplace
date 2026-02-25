@@ -68,6 +68,24 @@ Reviews all changes on the current branch since it diverged from a base.
 - No arguments: diffs against `main`
 - With a base branch: `/review-branch develop`
 
+## Flags
+
+### `--agents`
+
+Run only specific agents instead of all five. Pass a comma-separated list of agent names.
+
+```
+/review-pr 42 --agents security,types
+/review-file src/auth/ --agents security
+/review-code main --agents security,types
+/review-commit abc1234 --agents simplify
+/review-branch --agents security,async-perf
+```
+
+Valid agent names: `general`, `types`, `simplify`, `security`, `async-perf`.
+
+The `--agents` flag overrides the `agents` setting in `.claude/code-quality.local.md` for that invocation. This replaces the need for standalone `/security-audit` or `/type-check` commands.
+
 ## What Gets Posted
 
 - **Critical** and **suggestion** findings are posted as inline comments on the specific lines
