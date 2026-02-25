@@ -8,7 +8,7 @@ Source of truth for all code-quality agents. Every finding must follow these rul
 
 - Kind but direct — a quick suggestion with a one-sentence justification, never a lecture
 - Framework-agnostic — works with any TypeScript project (React, NestJS, Hono, standalone, monorepo)
-- Diff-scoped — only review what changed in the PR, not the entire codebase
+- Scoped — only review what changed in the diff or the files provided, not the entire codebase
 - Actionable — every finding must suggest a concrete fix or direction
 
 ## Severity Levels
@@ -31,7 +31,7 @@ Source of truth for all code-quality agents. Every finding must follow these rul
 - Missing documentation unless a public API is genuinely unclear
 - Test file implementation details (test structure, assertion style) unless there's a correctness issue
 - Patterns that are consistent with the rest of the codebase, even if you'd prefer a different approach
-- Changes outside the PR diff
+- Changes outside the provided diff or files
 
 ## Non-Overlapping Domains
 
