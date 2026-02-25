@@ -1,6 +1,6 @@
 # code-quality
 
-Automated PR code review for TypeScript projects. Five specialized agents run in parallel on your PR diff and post findings as a GitHub review with inline comments.
+Automated code review for TypeScript projects. Five specialized agents run in parallel on a diff and return findings grouped by severity. Works on GitHub PRs and local uncommitted changes.
 
 ## Agents
 
@@ -14,11 +14,25 @@ Automated PR code review for TypeScript projects. Five specialized agents run in
 
 ## Usage
 
+### Review a pull request
+
 ```
 /review-pr <number>
 ```
 
-Requires the GitHub CLI (`gh`) to be authenticated.
+Posts findings as a GitHub review with inline comments. Requires the GitHub CLI (`gh`) to be authenticated.
+
+### Review local changes
+
+```
+/review-code
+/review-code <ref>
+```
+
+Prints findings to the terminal grouped by severity. No GitHub interaction.
+
+- No arguments: reviews all uncommitted changes (staged + unstaged)
+- With a ref (e.g., `main`): reviews diff against that ref
 
 ## What Gets Posted
 
