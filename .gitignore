@@ -16,3 +16,6 @@ node_modules/
 
 # Reference-only ADR (not part of the plugin distribution)
 /Architecture.md
+
+# Internal planning docs (not part of the marketplace)
+/plans/
