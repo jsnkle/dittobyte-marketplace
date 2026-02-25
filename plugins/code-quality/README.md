@@ -34,6 +34,40 @@ Prints findings to the terminal grouped by severity. No GitHub interaction.
 - No arguments: reviews all uncommitted changes (staged + unstaged)
 - With a ref (e.g., `main`): reviews diff against that ref
 
+### Review entire files
+
+```
+/review-file <path>
+```
+
+Reviews complete file contents (not diffs). Useful for auditing existing code.
+
+- Single file: `/review-file src/auth/service.ts`
+- Directory: `/review-file src/utils/` — reviews all source files in the directory
+
+### Review a specific commit
+
+```
+/review-commit <ref>
+```
+
+Reviews the changes introduced by a single commit.
+
+- By SHA: `/review-commit abc1234`
+- Relative: `/review-commit HEAD~3`
+
+### Review a branch
+
+```
+/review-branch
+/review-branch <base>
+```
+
+Reviews all changes on the current branch since it diverged from a base.
+
+- No arguments: diffs against `main`
+- With a base branch: `/review-branch develop`
+
 ## What Gets Posted
 
 - **Critical** and **suggestion** findings are posted as inline comments on the specific lines
