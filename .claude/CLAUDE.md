@@ -22,6 +22,18 @@ Located at `plugins/monorepo-architecture/`.
 | Hooks | `plugins/monorepo-architecture/hooks/` |
 | Shared reference docs | `plugins/monorepo-architecture/references/` |
 
+## Plugin: code-quality
+
+Located at `plugins/code-quality/`.
+
+| Component | Location |
+|-----------|----------|
+| Plugin manifest | `plugins/code-quality/.claude-plugin/plugin.json` |
+| Slash commands | `plugins/code-quality/commands/` |
+| Agents | `plugins/code-quality/agents/` |
+| Skills | `plugins/code-quality/skills/` |
+| Shared reference docs | `plugins/code-quality/references/` |
+
 ## Development Guidelines
 
 - When adding a new plugin, create it under `plugins/<name>/` with its own `.claude-plugin/plugin.json`, then add an entry to `.claude-plugin/marketplace.json`.

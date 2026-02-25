@@ -1,0 +1,23 @@
+---
+name: review-file
+description: Run automated code review on entire files or a directory
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - Task
+---
+
+Run the file-review skill to perform automated code review on complete file contents.
+
+The argument is a file path or directory. Use the optional `--agents` flag to run only specific agents. Examples:
+
+- `/review-file src/auth/service.ts` — review a single file
+- `/review-file src/utils/` — review all source files in a directory
+- `/review-file src/auth/ --agents security` — run only the security agent
+- `/review-file src/auth/ --agents security,types` — run security and types agents
+
+Dispatch specialized agents in parallel to analyze the file contents, then print findings to the terminal grouped by severity. Built-in agents: `general`, `types`, `simplify`, `security`, `async-perf`. Custom agents use the `custom:<name>` prefix (e.g., `--agents security,custom:no-console-log`).
+
+Follow the orchestration steps in `${CLAUDE_PLUGIN_ROOT}/skills/file-review/SKILL.md`.

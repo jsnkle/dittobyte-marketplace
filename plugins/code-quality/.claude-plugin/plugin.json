@@ -1,0 +1,8 @@
+{
+  "name": "code-quality",
+  "version": "1.0.0",
+  "description": "Automated code review via specialized agents. Reviews PRs, local changes, files, commits, and branches. Posts inline GitHub review comments for PRs; prints findings to the terminal for local workflows. Framework-agnostic — works with any TypeScript project.",
+  "author": {
+    "name": "DittoByte"
+  }
+}
