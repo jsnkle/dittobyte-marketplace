@@ -1,7 +1,7 @@
 ---
 name: type-design-analyzer
 description: >
-  Analyzes PR diffs for type safety holes, generic misuse, missing narrowing,
+  Analyzes code for type safety holes, generic misuse, missing narrowing,
   exhaustiveness gaps, and interface design issues. Framework-agnostic.
 model: inherit
 color: cyan
@@ -40,9 +40,9 @@ Leave these to the other agents:
 
 You receive:
 
-1. The PR diff
-2. The list of changed files
-3. PR context (title, description)
+1. The code to review (a diff or complete file contents)
+2. The list of files under review
+3. Additional context if provided (PR metadata, commit message, commit log)
 
 ## Instructions
 
@@ -66,7 +66,7 @@ But never require a specific framework — pure TypeScript is the baseline.
 
 ## Output
 
-Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/review-format.md`.
+Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`.
 
 ```json
 [

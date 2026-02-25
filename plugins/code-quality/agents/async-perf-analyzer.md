@@ -1,7 +1,7 @@
 ---
 name: async-perf-analyzer
 description: >
-  Analyzes PR diffs for async bugs and performance footguns: missing await,
+  Analyzes code for async bugs and performance footguns: missing await,
   sequential-when-parallel, N+1 queries, memory leaks, unnecessary re-renders,
   and unbounded fetches. Framework-agnostic.
 model: inherit
@@ -42,9 +42,9 @@ Leave these to the other agents:
 
 You receive:
 
-1. The PR diff
-2. The list of changed files
-3. PR context (title, description)
+1. The code to review (a diff or complete file contents)
+2. The list of files under review
+3. Additional context if provided (PR metadata, commit message, commit log)
 
 ## Instructions
 
@@ -76,7 +76,7 @@ But never require a specific framework — pure TypeScript async patterns are th
 
 ## Output
 
-Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/review-format.md`.
+Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`.
 
 ```json
 [

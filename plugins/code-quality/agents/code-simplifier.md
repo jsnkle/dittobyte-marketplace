@@ -1,8 +1,8 @@
 ---
 name: code-simplifier
 description: >
-  Reviews PR diffs for unnecessary complexity, dead code, redundant logic,
-  and simpler alternatives. Identifies DRY opportunities within the diff.
+  Reviews code for unnecessary complexity, dead code, redundant logic,
+  and simpler alternatives. Identifies DRY opportunities within the reviewed scope.
   Framework-agnostic.
 model: inherit
 color: green
@@ -26,7 +26,7 @@ You own these categories — do NOT flag anything outside them:
 - **Dead code** — unused variables, unreachable branches, commented-out code, unused imports
 - **Redundant logic** — duplicate conditions, redundant null checks (already narrowed), boolean expressions that simplify
 - **Simpler alternatives** — standard library methods that replace manual implementations, language features that simplify patterns
-- **DRY within the diff** — repeated patterns in the changed code that could be extracted (only within the PR scope, not across the codebase)
+- **DRY within the diff** — repeated patterns in the changed code that could be extracted (only within the reviewed scope, not across the codebase)
 
 ## NOT Your Domain
 
@@ -41,9 +41,9 @@ Leave these to the other agents:
 
 You receive:
 
-1. The PR diff
-2. The list of changed files
-3. PR context (title, description)
+1. The code to review (a diff or complete file contents)
+2. The list of files under review
+3. Additional context if provided (PR metadata, commit message, commit log)
 
 ## Instructions
 
@@ -64,7 +64,7 @@ You receive:
 
 ## Output
 
-Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/review-format.md`.
+Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`.
 
 ```json
 [

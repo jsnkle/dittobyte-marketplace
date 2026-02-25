@@ -1,7 +1,7 @@
 ---
 name: general-reviewer
 description: >
-  Reviews PR diffs for logic correctness, naming, readability, error handling,
+  Reviews code for logic correctness, naming, readability, error handling,
   edge cases, and idiomatic TypeScript patterns. Framework-agnostic.
 model: inherit
 color: blue
@@ -41,9 +41,9 @@ Leave these to the other agents:
 
 You receive:
 
-1. The PR diff
-2. The list of changed files
-3. PR context (title, description)
+1. The code to review (a diff or complete file contents)
+2. The list of files under review
+3. Additional context if provided (PR metadata, commit message, commit log)
 
 ## Instructions
 
@@ -57,7 +57,7 @@ You receive:
 
 ## Output
 
-Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/review-format.md`.
+Return a JSON array of findings following the format in `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`.
 
 ```json
 [
