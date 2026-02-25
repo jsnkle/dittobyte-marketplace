@@ -2,15 +2,15 @@
 name: branch-review
 description: >
   Orchestrates automated code review on all changes in the current branch since
-  it diverged from a base branch by dispatching five specialized agents in
-  parallel against the aggregate diff, collecting findings, and printing results
-  to the terminal grouped by severity.
+  it diverged from a base branch by dispatching specialized agents in parallel
+  against the aggregate diff, collecting findings, and printing results to the
+  terminal grouped by severity.
   Trigger phrases: "review branch", "review my branch", "branch review".
 ---
 
 # Branch Review
 
-Runs automated code review on all changes in the current branch since it diverged from a base branch by dispatching five specialized agents in parallel, then printing findings to the terminal grouped by severity.
+Runs automated code review on all changes in the current branch since it diverged from a base branch by dispatching specialized agents in parallel, then printing findings to the terminal grouped by severity.
 
 ## Usage
 
@@ -26,6 +26,8 @@ Read configuration from `.claude/code-quality.local.md` if it exists. Parse YAML
 | `agents` | all five | Subset of agents to run: `general`, `types`, `simplify`, `security`, `async-perf` |
 | `exclude_patterns` | `[]` | Glob patterns to exclude from review (e.g., `**/*.test.ts`, `**/generated/**`) |
 
+If the user passed `--agents <list>` in the command arguments, use that comma-separated list instead of the config file's `agents` setting. Valid values: `general`, `types`, `simplify`, `security`, `async-perf`. If an unrecognized agent name is provided, print an error listing valid options and stop.
+
 ## Orchestration Steps
 
 ### Step 1 — Get the branch diff and commit log
@@ -37,7 +39,7 @@ git merge-base <base> HEAD
 ```
 
 ```bash
-git diff <merge-base>...HEAD
+git diff <merge-base> HEAD
 ```
 
 Get the commit log for context:
@@ -62,7 +64,7 @@ Launch all configured agents concurrently using the Task tool. Each agent receiv
 - The list of changed files
 - The commit log as additional context
 - Instructions to follow `${CLAUDE_PLUGIN_ROOT}/references/review-guidelines.md`
-- Output format from `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/review-format.md`
+- Output format from `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`
 
 Agent mapping:
 

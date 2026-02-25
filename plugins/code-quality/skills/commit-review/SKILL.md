@@ -1,7 +1,7 @@
 ---
 name: commit-review
 description: >
-  Orchestrates automated code review on a specific commit by dispatching five
+  Orchestrates automated code review on a specific commit by dispatching
   specialized agents in parallel against the commit's diff, collecting findings,
   and printing results to the terminal grouped by severity.
   Trigger phrases: "review commit", "review a commit", "check commit".
@@ -9,7 +9,7 @@ description: >
 
 # Commit Review
 
-Runs automated code review on a specific commit by dispatching five specialized agents in parallel, then printing findings to the terminal grouped by severity.
+Runs automated code review on a specific commit by dispatching specialized agents in parallel, then printing findings to the terminal grouped by severity.
 
 ## Usage
 
@@ -23,6 +23,8 @@ Read configuration from `.claude/code-quality.local.md` if it exists. Parse YAML
 |---------|---------|-------------|
 | `agents` | all five | Subset of agents to run: `general`, `types`, `simplify`, `security`, `async-perf` |
 | `exclude_patterns` | `[]` | Glob patterns to exclude from review (e.g., `**/*.test.ts`, `**/generated/**`) |
+
+If the user passed `--agents <list>` in the command arguments, use that comma-separated list instead of the config file's `agents` setting. Valid values: `general`, `types`, `simplify`, `security`, `async-perf`. If an unrecognized agent name is provided, print an error listing valid options and stop.
 
 ## Orchestration Steps
 
@@ -50,7 +52,7 @@ Launch all configured agents concurrently using the Task tool. Each agent receiv
 - The list of changed files
 - The commit message as additional context
 - Instructions to follow `${CLAUDE_PLUGIN_ROOT}/references/review-guidelines.md`
-- Output format from `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/review-format.md`
+- Output format from `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`
 
 Agent mapping:
 

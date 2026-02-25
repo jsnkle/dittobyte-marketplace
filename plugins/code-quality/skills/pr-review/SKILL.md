@@ -1,7 +1,7 @@
 ---
 name: pr-review
 description: >
-  Orchestrates automated PR code review by dispatching five specialized agents
+  Orchestrates automated PR code review by dispatching specialized agents
   in parallel, collecting findings, and posting a GitHub review with inline
   comments and a summary. Trigger phrases: "review PR", "code review",
   "review pull request".
@@ -9,7 +9,7 @@ description: >
 
 # PR Review
 
-Runs automated code review on a GitHub pull request by dispatching five specialized agents in parallel, then posting findings as a GitHub review.
+Runs automated code review on a GitHub pull request by dispatching specialized agents in parallel, then posting findings as a GitHub review.
 
 ## Usage
 
@@ -24,6 +24,8 @@ Read configuration from `.claude/code-quality.local.md` if it exists. Parse YAML
 | `agents` | all five | Subset of agents to run: `general`, `types`, `simplify`, `security`, `async-perf` |
 | `exclude_patterns` | `[]` | Glob patterns to exclude from review (e.g., `**/*.test.ts`, `**/generated/**`) |
 | `review_event` | `COMMENT` | GitHub review event type: `COMMENT` or `REQUEST_CHANGES` |
+
+If the user passed `--agents <list>` in the command arguments, use that comma-separated list instead of the config file's `agents` setting. Valid values: `general`, `types`, `simplify`, `security`, `async-perf`. If an unrecognized agent name is provided, print an error listing valid options and stop.
 
 ## Orchestration Steps
 
@@ -48,7 +50,7 @@ Launch all configured agents concurrently using the Task tool. Each agent receiv
 - The list of changed files
 - PR context (title, description, base branch, head branch)
 - Instructions to follow `${CLAUDE_PLUGIN_ROOT}/references/review-guidelines.md`
-- Output format from `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/review-format.md`
+- Output format from `${CLAUDE_PLUGIN_ROOT}/references/finding-format.md`
 
 Agent mapping:
 
@@ -79,7 +81,7 @@ Refer to `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/github-review-api.md
 
 2. Build the review payload:
    - `event`: from config (`COMMENT` or `REQUEST_CHANGES`)
-   - `body`: summary following the format in review-format.md
+   - `body`: summary following the format in `${CLAUDE_PLUGIN_ROOT}/skills/pr-review/references/review-format.md`
    - `comments`: inline comments for criticals and suggestions only
 
 3. Post:
