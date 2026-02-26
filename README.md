@@ -9,6 +9,7 @@ Add the marketplace, then install the plugins you want:
 ```bash
 /plugin marketplace add jsnkle/dittobyte-marketplace
 /plugin install monorepo-architecture@dittobyte-marketplace
+/plugin install code-quality@dittobyte-marketplace
 ```
 
 ## Available Plugins
@@ -53,6 +54,50 @@ web_features_path: apps/web/src/features
 
 For more details, see the [plugin README](./plugins/monorepo-architecture/README.md).
 
+### code-quality
+
+Automated code review via specialized agents. Five built-in agents run in parallel and return findings grouped by severity, with support for custom project-specific agents.
+
+- **Multi-workflow** — Reviews PRs, local changes, files, commits, and branches
+- **5 built-in agents** — general, types, simplify, security, async-perf
+- **Custom agents** — Create project-specific reviewers with `/create-agent`
+- **Auto-fix** — Run `/fix-findings` to apply fixes for actionable findings
+- **GitHub integration** — Posts inline review comments on PRs via `gh`
+
+**Commands:**
+
+| Command | Description |
+|---------|-------------|
+| `/review-pr <number>` | Review a PR and post findings as GitHub review comments |
+| `/review-code [ref]` | Review uncommitted changes or diff against a ref |
+| `/review-file <path>` | Review complete file or directory contents |
+| `/review-commit <ref>` | Review changes introduced by a single commit |
+| `/review-branch [base]` | Review all changes on the current branch |
+| `/fix-findings` | Auto-fix actionable findings from the most recent review |
+| `/create-agent <name>` | Scaffold a custom review agent |
+
+**Configuration:**
+
+Create `.claude/code-quality.local.md` in your project to customize agents and exclusions:
+
+```yaml
+---
+agents:
+  - general
+  - types
+  - simplify
+  - security
+  - async-perf
+  - custom:no-console-log
+exclude_patterns:
+  - "**/*.test.ts"
+  - "**/generated/**"
+review_event: COMMENT
+---
+```
+
+For more details, see the [plugin README](./plugins/code-quality/README.md).
+
 ## Marketplace Structure
 
 ```
@@ -65,6 +110,12 @@ plugins/
     agents/
     skills/
     hooks/
+    references/
+  code-quality/                   code-quality plugin
+    .claude-plugin/plugin.json
+    commands/
+    agents/
+    skills/
     references/
 ```
 
