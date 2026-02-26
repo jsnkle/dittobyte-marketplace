@@ -23,13 +23,13 @@
     {
       "name": "code-quality",
       "source": "./plugins/code-quality",
-      "description": "Automated code review via specialized agents. Reviews PRs, local changes, files, commits, and branches. Posts inline GitHub review comments for PRs; prints findings to the terminal for local workflows. Framework-agnostic — works with any TypeScript project.",
+      "description": "Automated code review via specialized agents. Reviews PRs, local changes, files, commits, and branches with five built-in agents (general, types, simplify, security, async-perf) plus support for custom project-specific agents. Posts inline GitHub review comments for PRs; prints findings to the terminal for local workflows. Includes auto-fix for actionable findings. Framework-agnostic — works with any TypeScript project.",
       "version": "1.0.0",
       "author": {
         "name": "DittoByte"
       },
       "license": "MIT",
-      "keywords": ["code-review", "pull-request", "typescript", "quality", "security"],
+      "keywords": ["code-review", "pull-request", "typescript", "quality", "security", "agents", "custom-agents", "auto-fix"],
       "category": "code-quality"
     }
   ]
